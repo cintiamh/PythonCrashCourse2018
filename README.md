@@ -1,2 +1,3 @@
 # PythonCrashCourse2018
-Notes from book.
+
+[Part I - Basics](01_Basics.md)
