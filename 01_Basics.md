@@ -62,3 +62,8 @@ print(full_name)
 ```
 
 #### Adding whitespace to strings with tabs or newlines
+
+* `\t` - tab
+* `\n` - newline
+
+#### Stripping whitespace
