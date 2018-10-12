@@ -127,3 +127,69 @@ print(bicycles)
 ```
 
 ### Accessing elements in a list
+
+Lists are ordered collections.
+
+Access by index:
+```python
+bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+print(bicycles[0].title())
+```
+
+Get the last element:
+```python
+bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+print(bicycles[-1])
+```
+
+### Modifying elements in a list
+
+```python
+motorcycles = ['honda', 'yamaha', 'suzuki']
+motorcycles[0] = 'ducati'
+```
+
+### Appending elements to the end of a list
+
+```python
+motorcycles.append('ducati')
+```
+
+### Inserting elements into a list
+
+```python
+motorcycles.insert(0, 'ducati')
+```
+
+### Removing an item using the del statement
+
+```python
+del motorcycles[0]
+```
+
+### Removing an item using the pop() method
+
+The `pop()` method removes the last item in a list, and it lets you work with that item after removing it.
+
+```python
+popped_motorcycle = motorcycles.pop()
+```
+
+### Popping items from any position in a list
+
+```python
+first_owned = motorcycles.pop(0)
+print('The first motorcycle I owned was a ' + first_owned.title() + '.')
+```
+
+### Removing an item by value
+
+`remove()` deletes only the first occurrence of the specified value.
+
+```python
+motorcycles.remove('yamaha')
+```
+
+### Organizing a list
+
+#### Sorting a list permanently with the sort() method
