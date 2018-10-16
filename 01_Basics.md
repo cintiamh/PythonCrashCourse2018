@@ -195,3 +195,39 @@ motorcycles.remove('yamaha')
 #### Sorting a list permanently with the sort() method
 
 [cars.py](basics/cars.py)
+
+```python
+cars = ['bmw', 'audi', 'toyota', 'subaru']
+cars.sort()
+```
+
+Reversed sort:
+```python
+cars.sort(reverse=True)
+print(cars)
+```
+
+#### Sorting a list temporarily with the sorted() function
+
+This doesn't change cars order
+```python
+print(sorted(cars))
+```
+
+#### Printing a list in reverse order
+
+Just reverse the original list:
+```python
+cars = ['bmw', 'audi', 'toyota', 'subaru']
+cars.reverse()
+```
+
+#### Finding the length of a list
+
+```python
+>>> cars = ['bmw', 'audi', 'toyota', 'subaru']
+>>> len(cars)
+4
+```
+
+You can access the last element using `-1`
