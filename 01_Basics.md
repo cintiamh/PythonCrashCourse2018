@@ -3,6 +3,7 @@
 1. [Getting Started](#getting_started)
 2. [Variables and simple data types](#variables_and_simple_data_types)
 3. [Introducing lists](#introducing_lists)
+4. [Working with lists](#working_with_lists)
 
 ## Getting Started
 
@@ -231,3 +232,65 @@ cars.reverse()
 ```
 
 You can access the last element using `-1`
+
+## Working with lists
+
+### Looping through an entire list
+
+```python
+magicians = ['alice', 'david', 'carolina']
+for magician in magicians:
+    print(magician)
+```
+
+### Avoid indentation errors
+
+Python uses indentation to determine when one line of code is connected to the line above it.
+
+### Making numerical lists
+
+#### Using the range() function
+
+numbers.py
+```python
+for value in range(1, 5):
+    print(value) // prints 1 to 4
+```
+
+#### Using range() to make a list of Numbers
+
+even_numbers.py
+```python
+even_numbers = list(range(2, 11, 2))
+print(even_numbers)
+```
+
+squares.py
+```python
+squares = []
+for value in range(1, 11):
+    square = value**2
+    squares.append(square)
+
+print(squares)
+```
+
+#### Simple statistics with a list of numbers
+
+```python
+>>> digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+>>> min(digits)
+0
+>>> max(digits)
+9
+>>> sum(digits)
+45
+```
+
+#### List comprehensions
+
+```python
+squares = [value**2 for value in range(1,11)]
+```
+
+### Working with part of a list
