@@ -294,3 +294,45 @@ squares = [value**2 for value in range(1,11)]
 ```
 
 ### Working with part of a list
+
+slice => a specific group of items in a list.
+
+#### Slicing a list
+
+[players.py](./basics/players.py)
+```python
+players = ['charles', 'martina', 'michael', 'florence', 'eli']
+print(players[0:3])
+```
+
+If you omit the first index in a slice, Python automatically starts your slice at the beginning of the list.
+
+```python
+print(players[:4])
+```
+
+A similar syntax works if you want a slice that includes the end of a list.
+
+```python
+print(players[2:])
+print(players[-3:]) # 3 last elements
+```
+
+#### Copying a list
+
+You can make a slice that includes all elements from the original.
+[foods.py](./basics/foods.py)
+```python
+my_foods = ['pizza', 'falafel', 'carrot cake']
+friend_foods = my_foods[:]
+
+print("My favorite foods are:")
+print(my_foods)
+
+print("\nMy friend's favorite foods are:")
+print(friend_foods)
+```
+
+If don't use the slice, and just assign the original list to a new one, it will just be pointing to it. Changes in one list will reflect on the other.
+
+### Tuples
