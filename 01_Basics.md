@@ -4,6 +4,7 @@
 2. [Variables and simple data types](#variables_and_simple_data_types)
 3. [Introducing lists](#introducing_lists)
 4. [Working with lists](#working_with_lists)
+5. [If statements](#if_statements)
 
 ## Getting Started
 
@@ -336,3 +337,99 @@ print(friend_foods)
 If don't use the slice, and just assign the original list to a new one, it will just be pointing to it. Changes in one list will reflect on the other.
 
 ### Tuples
+
+Tuple is a immutable list.
+Define a tuple using `()` instead of `[]` (list)
+
+[dimensions.py](./basics/dimensions.py)
+
+```python
+dimensions = (200, 50)
+print(dimensions[0])
+print(dimensions[1])
+```
+
+Python raises an error when we try to change a tuple's value.
+
+#### Looping through
+
+```python
+dimensions = (200, 50)
+print("Original dimensions:")
+for dimension in dimensions:
+    print(dimension)
+
+dimensions = (400, 100)
+print("\nModified dimensions:")
+for dimension in dimensions:
+    print(dimension)
+```
+
+You can't modify a tuple, but you can assign a new value to a variable that holds a tuple.
+
+### Styling your code
+
+*Python Enhancement Proposal (PEP)* - current: PEP8
+
+https://python.org/dev/peps/pep-0008/
+
+#### Indentation
+
+* 4 spaces
+
+Mixing tabs and spaces can cause problems.
+
+#### Line length
+
+* code <= 80 chars
+* comments <= 72 chars
+
+#### Blank lines
+
+* use blank lines to organize your files
+
+## If statements
+
+### A simple example
+
+```python
+cars = ['bmw', 'audi', 'toyota', 'subaru']
+
+for car in cars:
+    if car == 'bmw':
+        print(car.upper())
+    else:
+        print(car.title())
+```
+
+### Checking for inequality (and)
+
+```python
+requested_topping = 'mushrooms'
+
+if requested_topping != 'anchovies':
+    print("Hold the anchovies!")
+```
+
+### Checking multiple conditions (or)
+
+```python
+age_0 >= 21 and age_1 <= 22
+age_0 > 9 or age_1 > 22
+```
+
+### Checking whether a value is in a list
+
+```python
+'mushrooms' in requested_toppings
+user not in banned_users
+```
+
+### Boolean expressions
+
+```python
+game_active = True
+can_edit = False
+```
+
+### if-else statements
