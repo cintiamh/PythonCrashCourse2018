@@ -5,6 +5,7 @@
 3. [Introducing lists](#introducing_lists)
 4. [Working with lists](#working_with_lists)
 5. [If statements](#if_statements)
+6. [Dictionaries](#dictionaries)
 
 ## Getting Started
 
@@ -458,3 +459,34 @@ else:
 
 print("Your admission cost is $" + str(price) + ".")
 ```
+
+#### Checking that a list is not empty
+
+```python
+requested_toppings = []
+
+if requested_toppings:
+  for requested_topping in requested_toppings:
+    print("Adding " + requested_topping + ".")
+  print("\nFinished making your pizza.")
+else:
+  print("Are you sure you want a plain pizza?")
+```
+
+#### Using multiple lists
+
+```python 
+available_toppings = ['mushrooms', 'olives', 'green peppers', 
+                        'pepperoni', 'pinaple', 'extra cheese']
+requested_toppings = ['mushrooms', 'french fries', 'extra cheese']
+
+for requested_topping in requested_toppings:
+    if requested_topping in available_toppings:
+        print("Adding: " + requested_topping + ".")
+    else:
+        print("Sorry, we don't have " + requested_topping + ".")
+
+print("\nFinished making your pizza")
+```
+
+## Dictionaries
