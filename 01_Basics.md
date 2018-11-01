@@ -490,3 +490,67 @@ print("\nFinished making your pizza")
 ```
 
 ## Dictionaries
+
+### A simple dictionary
+
+A dictionary is a collection of key-value pairs.
+
+```python
+alien_0 = {'color': 'green', 'points': 5}
+
+print(alien_0['color'])
+print(alien_0['points'])
+```
+
+### Adding new key-value pairs
+
+Dictionaries are dynamic structures.
+
+```python 
+alien_0['x_position'] = 0
+alien_0['y_position'] = 25
+```
+
+### Removing key-value pairs
+
+```python 
+del alien_0['points']
+```
+
+### A dictionary of similar objects
+
+Multiple lines:
+```python 
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+}
+
+print("Sarah's favorite language is " +
+    favorite_languages['sarah'].title() +
+    ".")
+```
+
+### Looping through a dictionary
+
+#### Looping through all key-value pairs
+
+```python
+user_0 = {
+    'username': 'efermi',
+    'first': 'enrico',
+    'last': 'fermi'
+}
+
+for key, value in user_0.items():
+    print("\nKey: " + key)
+    print("Value: " + value)
+```
+
+`.items()` returns a list of key value pairs
+
+#### Looping through all the keys in a dictionary
+
+`.keys()` returns a list of all keys
