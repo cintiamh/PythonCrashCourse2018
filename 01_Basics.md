@@ -554,3 +554,79 @@ for key, value in user_0.items():
 #### Looping through all the keys in a dictionary
 
 `.keys()` returns a list of all keys
+
+```python
+for name in favorite_languages.keys():
+    print(name.title())
+```
+
+Looping through keys is the default behavior.
+Same result:
+```python
+for name in favorite_languages:
+    print(name.title())
+```
+
+Check if a key is not in the list:
+```python 
+if 'erin' not in favorite_languages:
+    print("Erin, please take our poll!")
+```
+
+#### Looping through a dictionary's keys in order
+
+```python
+for name in sorted(favorite_languages):
+    print(name.title() + ", thank you for taking the poll.")
+```
+
+#### Looping through all values in a dictionary
+
+`.values()` returns a list of values without any keys.
+
+```python 
+print("The following languages have been mentioned:")
+for language in favorite_languages.values():
+    print(language.title())
+```
+
+`set()` removes duplicates from list.
+```python 
+print("The following languages have been mentioned:")
+for language in set(favorite_languages.values()):
+    print(language.title())
+```
+
+### Nesting
+
+#### A list of dictionaries
+
+```python
+alien_0 = {'color': 'green', 'points': 5}
+alien_1 = {'color': 'yellow', 'points': 10}
+alien_2 = {'color': 'red', 'points': 15}
+
+aliens = [alien_0, alien_1, alien_2]
+
+for alien in aliens:
+    print(alien)
+```
+
+Dynamically generating aliens:
+```python
+# Make an empty list of storing aliens
+aliens = []
+
+# Make 30 green aliens
+for alien_number in range(30):
+    new_alien = {'color': 'green', 'points': 5, 'speed': 'slow'}
+    aliens.append(new_alien)
+
+# Show the first 5 aliens 
+for alien in aliens[:5]:
+    print(alien)
+print('...')
+
+# Show how many aliens have been created
+print("Total number of aliens: " + str(len(aliens)))
+```
