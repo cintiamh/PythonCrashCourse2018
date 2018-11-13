@@ -738,3 +738,20 @@ while message != 'quit':
 ```
 
 #### Using a flag
+
+[parrot.py](./basics/parrot.py)
+```python 
+prompt = "\nTell me something, and I will repeat it back to you:"
+prompt += "\nEnter 'quit' to end the program. "
+
+active = True
+while active:
+    message = input(prompt)
+    
+    if message == 'quit':
+        active = False
+    else:
+        print(message)
+```
+
+#### Using a break to exit a loop
