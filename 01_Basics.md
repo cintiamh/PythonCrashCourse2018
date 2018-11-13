@@ -680,3 +680,61 @@ for username, user_info in users.items():
 ### How the input() function works
 
 `input()` - pauses and waits for user input.
+
+[parrot.py](./basics/parrot.py)
+```python 
+message = input("Tell me something, and I will repeat it back to you: ")
+print(message)
+```
+
+#### Using `int()` to accept numerical input
+
+Python interprets input as a string.
+
+[rollercoaster.py](./basics/rollercoaster.py)
+```python 
+height = input("How tall are you, in inches? ")
+height = int(height)
+
+if height >= 36:
+    print("\nYou're tall enough to ride!")
+else:
+    print("\nYou'll be able to ride when you're a little older.")
+```
+
+#### The modulo operator (%)
+
+* divides one number by another and returns the remainder.
+
+#### Accepting input in Python 2.7
+
+`raw_input()` => returns a string
+`input()` => tries to run as Python code
+
+### Introducing while loops
+
+`while` loop runs as long as a certain condition is true.
+
+#### The while loop in action
+
+[counting.py](./basics/counting.py)
+```python 
+current_number = 1
+while current_number <= 5:
+    print(current_number)
+    current_number += 1
+```
+
+#### Letting the user choose when to quit
+
+[parrot.py](./basics/parrot.py)
+```python 
+prompt = "\nTell me something, and I will repeat it back to you:"
+prompt += "\nEnter 'quit' to end the program. "
+message = ""
+while message != 'quit':
+    message = input(prompt)
+    print(message)
+```
+
+#### Using a flag
