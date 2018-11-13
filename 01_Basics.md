@@ -7,6 +7,7 @@
 5. [If statements](#if_statements)
 6. [Dictionaries](#dictionaries)
 7. [User input and while loops](#user_input_and_while_loops)
+8. [Functions](#functions)
 
 ## Getting Started
 
@@ -755,3 +756,91 @@ while active:
 ```
 
 #### Using a break to exit a loop
+
+[cities.py](./basics/cities.py)
+```python 
+prompt = "\nPlease enter the name of a city you have visited:"
+prompt += "\n(Enter 'quit' when you are finished.) "
+
+while True:
+    city = input(prompt)
+    
+    if city == 'quit':
+        break
+    else:
+        print("I'd love to go to " + city.title() + "!")
+```
+
+#### Using continue in a loop
+
+[counting.py](./basics/counting.py)
+```python 
+current_number = 0
+while current_number < 10:
+    current_number += 1
+    if current_number % 2 == 0:
+        continue
+    print(current_number)
+```
+
+### Using a while loop with lists and dictionaries
+
+[confirmed_users.py](./basics/confirmed_users.py)
+```python 
+# Start with users that need to be verified
+# and an empty list to hold confirmed users.
+unconfirmed_users = ['alice', 'brian', 'candace']
+confirmed_users = []
+
+# Verify each user until there are no more unconfirmed usersself.
+# Move each verified user into the list of confirmed users.
+while unconfirmed_users:
+    current_user = unconfirmed_users.pop()
+    
+    print("Verifying user: " + current_user.title())
+    confirmed_users.append(current_user)
+
+# Display all confirmed_users
+print("\nThe following users have been confirmed:")
+for confirmed_user in confirmed_users:
+    print(confirmed_user.title())
+```
+
+[pets.py](./basics/pets.py)
+```python 
+pets = ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
+print(pets)
+
+while 'cat' in pets:
+    pets.remove('cat')
+
+print(pets)
+```
+
+[mountain_poll.py](./basics/mountain_poll.py)
+```python 
+responses = {}
+
+# Set a flag to indicate that polling is active
+polling_active = True
+
+while polling_active:
+    # Prompt for the person's name and response
+    name = input("\nWhat's your name?")
+    response = input("Which mountain would you like to climb someday? ")
+
+    # Store the response in the dictionary
+    responses[name] = response
+
+    # Find out if anyone else is going to take the poll
+    repeat = input("Would you like to let another person respond? (y/n) ")
+    if repeat == 'n':
+        polling_active = False
+
+# Polling is complete. Show the results
+print("\n--- Poll Results ---")
+for name, response in responses.items():
+    print(name + " would like to climb " + response + ".")
+```
+
+## Functions
