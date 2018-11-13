@@ -6,6 +6,7 @@
 4. [Working with lists](#working_with_lists)
 5. [If statements](#if_statements)
 6. [Dictionaries](#dictionaries)
+7. [User input and while loops](#user_input_and_while_loops)
 
 ## Getting Started
 
@@ -630,3 +631,52 @@ print('...')
 # Show how many aliens have been created
 print("Total number of aliens: " + str(len(aliens)))
 ```
+
+#### A list in a dictionary
+
+[pizza.py](./basics/pizza.py)
+```python 
+# Store information about a pizza being ordered
+pizza = {
+    'crust': 'thick',
+    'toppings': ['mushrooms', 'extra cheese']
+}
+# Summarize the order
+print("You ordered a " + pizza['crust'] + "-crust pizza " +
+    "with the following toppings:")    
+
+for topping in pizza['toppings']:
+    print("\t" + topping)
+```
+
+#### A dictionary in a dictionary
+
+[many_users.py](./basics/many_users.py)
+```python 
+users = {
+    'aeinstein': {
+        'first': 'albert',
+        'last': 'einstain',
+        'location': 'princeton',
+    },
+    'mcurie': {
+        'first': 'marie',
+        'last': 'curie',
+        'location': 'paris',
+    },
+}
+
+for username, user_info in users.items():
+    print("\nUsername: " + username)
+    full_name = user_info['first'] + " " + user_info['last']
+    location = user_info['location']
+    
+    print("\tFull name: " + full_name.title())
+    print("\tLocation: " + location.title())
+```
+
+## User input and while loops
+
+### How the input() function works
+
+`input()` - pauses and waits for user input.
