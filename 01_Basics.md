@@ -8,6 +8,7 @@
 6. [Dictionaries](#dictionaries)
 7. [User input and while loops](#user_input_and_while_loops)
 8. [Functions](#functions)
+9. [Classes](#classes)
 
 ## Getting Started
 
@@ -965,3 +966,188 @@ while True:
 ```
 
 #### Passing a list
+
+##### Preventing a function from modifying a list
+
+```python
+function_name(list_name[:])
+```
+
+The slice notation `[:]` makes a copy of the list to send to the function.
+
+You should pass the original list to functions unless you have a specific reason to pass a copy.
+
+#### Passing an arbitrary number of arguments
+
+pizza.py
+```python 
+def make_pizza(*toppings):
+    print("\nMaking a pizza with the following toppings:")
+    for topping in toppings:
+        print("- " + topping)
+
+make_pizza('pepperoni')
+make_pizza('mushrooms', 'green peppers', 'extra cheese')
+```
+
+`*toppings` make an empty tuple called `toppings` and pack whatever values in receives into this tuple.
+
+#### Using arbitrary keyword arguments
+
+user_profile.py
+```python 
+def build_profile(first, last, **user_info):
+    profile = {}
+    profile['first_name'] = first
+    profile['last_name'] = last
+    for key, value in user_info.items():
+        profile[key] = value
+    return profile
+    
+user_profile = build_profile('albert', 'einstein', location='princeton', field='physics')
+
+print(user_profile)
+```
+
+`**user_info` create an empty dictionary called `user_info` and pack whatever name-value pairs it receives into this dictionary.
+
+### Storing your functions in modules
+
+You can store your functions in a separated file called a *module* and then *importing* that module into your main program.
+
+#### Importing an entire module
+
+pizza.py
+```python 
+def make_pizza(size, *toppings):
+    print("\nMaking a " + str(size) + 
+        "-inch pizza with the following toppings:")
+    for topping in toppings:
+        print("- " + topping)
+```
+
+making_pizzas.py
+```python
+import pizza 
+
+pizza.make_pizza(16, 'pepperoni')
+pizza.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+```
+
+And run:
+```
+$ python3 basics/making_pizzas.py 
+```
+
+#### Importing specific functions
+
+```python 
+from module_name import function_0, function_1, function_2
+```
+
+With this syntax you don't need to use the dot notation.
+
+#### Using as to give a function an alias
+
+```python 
+from module_name import function_name as fn
+```
+
+#### Using as to give a module an alias
+
+```python
+import module_name as mn
+```
+
+#### Importing all functions in a module
+
+```python
+from module_name import *
+```
+
+`*` tells Python to copy every function from the module. You can call each function by name without using the dot notation.
+
+The best approach is to import the function or functions you want, or import the entire module and use dot notation.
+
+### Styling functions
+
+* Descriptive names, lowercase letters, underscores.
+* Every function should have a comment.
+* If you specify a default value for a parameter, no spaces on either side of the equal sign.
+* PEP 8: https://www.python.org/dev/peps/pep-0008/
+* Line length: 79
+* All `import` statements should be written at the top.
+
+## Classes
+
+### Creating and using a class
+
+dog.py
+```python 
+class Dog():
+    """A simple attempt to model a dog."""
+    
+    def __init__(self, name, age):
+        """Initialize name and age attributes."""
+        self.name = name
+        self.age = age
+    
+    def sit(self):
+        """Simulate a dog sitting in response to a command."""
+        print(self.name.title() + " is sitting.")
+    
+    def roll_over(self):
+        """Simulate rolling over in response to a command."""
+        print(self.name.title() + " rolled over!")
+```
+
+* `Dog`: Capitalized names for class 
+* `__init__()`: Special method that runs automatically whenever we create a new instance of `Dog`.
+* `self`: this parameter is required and it must come first. Every method call associated with a class automatically pass the `self` argument.
+
+#### Creating classes in Python 2.7
+
+```python
+class Dog(object): # you need to pass in object
+  --snip--
+```
+
+#### Making an instance from a class
+
+Accessing attributes
+```python 
+my_dog = Dog('willie', 6)
+
+print("My dog's name is " + my_dog.name.title() + ".")
+print("My dog is " + str(my_dog.age) + " years old.")
+```
+
+Calling methods:
+```python 
+my_dog.sit()
+my_dog.roll_over()
+```
+
+### Working with classes and instances
+
+car.py
+```python 
+class Car():
+    """A simple attempt to represent a car."""
+    
+    def __init__(self, make, model, year):
+        """Initialize attributes to describe a car."""
+        self.make = make
+        self.model = model
+        self.year = year
+    
+    def get_descriptive_name(self):
+        """Return a neatly formatted descriptive name."""
+        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+        return long_name.title()
+    
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+```
+
+#### Setting a default value for an attribute
