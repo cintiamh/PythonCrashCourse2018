@@ -1330,3 +1330,34 @@ for name, language in favorite_languages.items():
 * place the import statement for the standard library module first, then add a blank line and the import statement for the module you wrote.
 
 ## Files and Exceptions
+
+### Reading from a file
+
+#### Reading an entire file
+
+pi_digits.txt
+```
+3.1415926535
+  8979323846
+  2643383279
+```
+
+file_reader.py
+```python 
+with open('basics/pi_digits.txt') as file_object:
+    contents = file_object.read()
+    print(contents)
+```
+
+* `open()`: uses name of the file you want to open.
+* `with` closes the file once access to it is no longer needed.
+* You could use `open()` and `close()`, but if something prevents `close()` from being executed, the file may never close and data may be lost or corrupted.
+* Using the structure above, Python will figure out when to close the file for you.
+* `read()` returns an empty string when it reaches the end of the file.
+* use `rstrip()` to remove the extra line
+
+```python 
+print(contents.rstrip())
+```
+
+#### File paths
