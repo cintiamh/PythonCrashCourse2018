@@ -9,6 +9,7 @@
 7. [User input and while loops](#user_input_and_while_loops)
 8. [Functions](#functions)
 9. [Classes](#classes)
+10. [Files and Exceptions](#files_and_exceptions)
 
 ## Getting Started
 
@@ -1241,3 +1242,91 @@ my_tesla.battery.describe_battery()
 ```
 
 ### Importing Classes
+
+my_new_car.py
+```python
+from car import Car 
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+my_new_car.odometer_reading = 23
+my_new_car.read_odometer()
+```
+
+The `import` statement says to open the `car` module and import the `Car` class.
+
+#### Storing multiple classes in a module
+
+my_electric_car.py
+```python 
+from car import ElectricCar 
+```
+
+#### Importing multiple classes from a module
+
+my_cars.py
+```python 
+from car import Car, ElectricCar
+```
+
+#### Importing an entire module
+
+my_cars.py
+```python 
+import car 
+
+my_beetle = car.Car('volkswagen', 'beetle', 2016)
+print(my_beetle.get_descriptive_name())
+
+my_tesla = car.ElectricCar('tesla', 'roadster', 2016)
+print(my_tesla.get_descriptive_name())
+```
+
+#### Importing all classes from a module
+
+```python 
+from module_name import *
+```
+
+This is not recommended
+
+#### Importing a module into a module
+
+You want to spread out your classes over several modules in order to not have few big files with a lot classes in it. It's also easier to find.
+
+We want something like:
+```python 
+from car import Car 
+from electric_car import ElectricCar
+```
+
+### The Python Standard Library
+
+The Python Standard Library is a set of modules included with every Python installation.
+
+You can use OrderedDict from collections module to keep a dictionary that keeps track of the order.
+
+```python
+from collections import OrderedDict 
+
+favorite_languages = OrderedDict()
+
+favorite_languages['jen'] = 'python'
+favorite_languages['sarah'] = 'c'
+favorite_languages['edward'] = 'ruby'
+favorite_languages['phil'] = 'python'
+
+for name, language in favorite_languages.items():
+  print(name.title() + "'s favorite language is " + language.title() + ".")
+```
+
+### Styling classes
+
+* Class names should be written in `CamelCaps`.
+* Every class should have a docstring immediately following the class definition.
+* Each moduel should also have a docstring describing what the classes in a mopdule can be used for.
+* Use one blank line between methods, and within a module you can use two blank lines to separate classes.
+* place the import statement for the standard library module first, then add a blank line and the import statement for the module you wrote.
+
+## Files and Exceptions

@@ -1,3 +1,5 @@
+"""A class that can be used to represent a car."""
+
 class Car():
     """A simple attempt to represent a car."""
     
@@ -33,6 +35,9 @@ class Battery():
     
     def describe_battery(self):
         print("This car has a " + str(self.battery_size) + "-kWh battery.")
+    
+    def get_range(self):
+        print("This car range is " + str(self.battery_size))
 
 class ElectricCar(Car):
     """Represent aspects of a car, specific to electric vehicles."""
@@ -44,9 +49,9 @@ class ElectricCar(Car):
     def describe_battery(self):
         print("This car has a " + str(self.battery_size) + "-kWh battery.")
     
-my_new_car = Car('audi', 'a4', 2016)
-print(my_new_car.get_descriptive_name())
-
-my_tesla = ElectricCar('tesla', 'model s', 2018)
-print(my_tesla.get_descriptive_name())
-my_tesla.battery.describe_battery()
+# my_new_car = Car('audi', 'a4', 2016)
+# print(my_new_car.get_descriptive_name())
+# 
+# my_tesla = ElectricCar('tesla', 'model s', 2018)
+# print(my_tesla.get_descriptive_name())
+# my_tesla.battery.describe_battery()
