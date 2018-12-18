@@ -10,6 +10,7 @@
 8. [Functions](#functions)
 9. [Classes](#classes)
 10. [Files and Exceptions](#files_and_exceptions)
+  b. [Exceptions](#exceptions)
 
 ## Getting Started
 
@@ -1361,3 +1362,127 @@ print(contents.rstrip())
 ```
 
 #### File paths
+
+* relative path: look for location relative to the current running program file directory.
+* absolute path: exactly where the file is on computer.
+  * `/home/cintiamh/other_files/text_files/filename.txt`
+  * Windows: `C:\Users\cintiamh\other_files\text_files\filename.txt`
+
+#### Reading line by line
+
+file_reader.py
+```python 
+filename = 'basics/pi_digits.txt'
+
+with open(filename) as file_object:
+    for line in file_object:
+        print(line)
+```
+
+#### Making a list of lines from a file
+
+In the example above, `with` keeps track of line only inside its block.
+
+```python
+filename = 'basics/pi_digits.txt'
+
+with open(filename) as file_object:
+    lines = file_object.readlines()
+
+for line in lines:
+    print(line.rstrip())
+```
+
+`realines()` method takes each line from the file object and stores it in a list.
+
+#### Large files: one million digits
+
+You can work with as much data as your system's memory can handle.
+
+### Writing to a file
+
+#### Writing to an empty file 
+
+write_message.py
+```python 
+filename = 'basics/programming.txt'
+
+with open(filename, 'w') as file_object:
+    file_object.write("I love programming.")
+```
+
+The second argument for `open()` is `'w'` to tell Python we want to open the file in write mode.
+
+* `'w'`: write mode
+* `'r'`: read mode (default)
+* `'a'`: append mode
+* `'r+'`: read and write mode
+
+#### Writing multiple lines
+
+```python 
+filename = 'basics/programming.txt'
+
+with open(filename, 'w') as file_object:
+    file_object.write("I love programming.\n")
+    file_object.write("I love creating new games.\n")
+```
+
+#### Appending to a file
+
+Append mode: add content to a file instead of writing over existing content.
+
+```python 
+filename = 'basics/programming.txt'
+
+with open(filename, 'a') as file_object:
+    file_object.write("I also love finding meaning in large datasets.\n")
+    file_object.write("I love creating apps that can run in a browser.\n")
+```
+
+## Exceptions
+
+Exceptions are objects that manage errors that arise during a program's execution.
+
+If you write code that handles the exception, the program will continue running. If you don't, the program will halt and show a traceback.
+
+Exceptions are handled with `try-except` blocks.
+
+### Handling a ZeroDivisionError exception
+
+```python 
+print(5/0)
+```
+
+#### Using try-except blocks
+
+division.py
+```python 
+try:
+    print(5/0)
+except ZeroDivisionError:
+    print("You can't divide by zero.")
+```
+
+#### The else block
+
+```python 
+print("Give me two numbers, and I'll divide them.")
+print("Enter 'q' to quit")
+
+while True:
+    first_number = input("\nFirst number: ")
+    if first_number == 'q':
+        break
+    second_number = input("Second number: ")
+    try:
+        answer = int(first_number) / int(second_number)
+    except ZeroDivisionError:
+        print("You can't divide by zero.")
+    else:
+        print(answer)
+```
+
+Your code will be resistant to innocent user mistakes and malicious attacks.
+
+#### Handling the FileNotFoundError exception
