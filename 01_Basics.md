@@ -11,6 +11,8 @@
 9. [Classes](#classes)
 10. [Files and Exceptions](#files_and_exceptions)
   b. [Exceptions](#exceptions)
+  c. [Storing Data](#storing_data)
+11. [Testing your code](#testing_your_code)
 
 ## Getting Started
 
@@ -1486,3 +1488,111 @@ while True:
 Your code will be resistant to innocent user mistakes and malicious attacks.
 
 #### Handling the FileNotFoundError exception
+
+alice.py
+```python 
+filename = 'alice.txt'
+
+try:
+  with open(filename) as f_obj:
+    contents = f_obj.read()
+except FileNotFoundError:
+  msg = "Sorry, the file " + filename + " does not exist."
+  print(msg)
+```
+
+#### Analyzing text
+
+```python 
+title = "Alice in Wonderland"
+title.split()
+# ['Alice', 'in', 'Wonderland']
+```
+
+#### Working with multiple files
+
+count_words.py
+```python 
+def count_words(filename):
+    """Count the approximate number of words in a file."""
+    try:
+        with open(filename) as f_obj:
+            contents = f_obj.read()
+    except FileNotFoundError:
+        msg = "Sorry, the file " + filename + " does not exist."
+        print(msg)
+    else:
+        # Count approximate number of word in the file. 
+        words = contents.split()
+        num_words = len(words)
+        print("The file " + filename + " has about " + str(num_words) + " words.") 
+
+filenames = ['alice.txt', 'siddhartha.txt', 'moby_dick.txt', 'little_women.txt']
+for filename in filenames:
+    count_words(filename)
+```
+
+#### Failing silently
+
+```python 
+try:
+  # --snip--
+except FileNotFoundError:
+  pass 
+else:
+  # --snip--
+```
+
+With `pass`, there's no output in response to the error.
+
+Every time your program depends on something external (user input, files, network connection) it's good to measure when feedback is necessary.
+
+### Storing Data
+
+The `json` module allows you to dump simple Python data structure in a file and load the data from that file the next time the program runs.
+
+#### Using json.dump() and json.load()
+
+number_writer.py
+```python 
+import json 
+
+numbers = [2, 3, 5, 7, 11, 13]
+
+filename = 'basics/numbers.json'
+with open(filename, 'w') as f_obj:
+    json.dump(numbers, f_obj)
+```
+
+number_reader.py
+```python 
+import json 
+
+filename = 'basics/numbers.json'
+with open(filename) as f_obj:
+    numbers = json.load(f_obj)
+
+print(numbers)
+```
+
+#### Saving and Reading User-Generated Data
+
+remember_me.py
+```python 
+import json 
+
+filename = 'basics/username.json'
+
+try:
+    with open(filename) as f_obj:
+        username = json.load(f_obj)
+except FileNotFoundError:
+    username = input("What is your name? ")
+    with open(filename, 'w') as f_obj:
+        json.dump(username, f_obj)
+        print("We'll remember you when you come back, " + username + "!")
+else:
+    print("Welcome back, " + username + "!")
+```
+
+## Testing your code
