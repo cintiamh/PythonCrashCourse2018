@@ -1596,3 +1596,207 @@ else:
 ```
 
 ## Testing your code
+
+Testing using Python's `unittest` module.
+
+### Testing a function
+
+A function to format a full name:
+
+name_function.py
+```python 
+def get_formatted_name(first, last):
+    """Generate a neatly formatted full name."""
+    full_name = first + ' ' + last 
+    return full_name.title()
+```
+
+A code that uses that code:
+
+names.py
+```python 
+from name_function import get_formatted_name
+
+print("Enter 'q' at any time to quit.")
+while True:
+    first = input("\nPlease give me a first name: ")
+    if first == 'q':
+        break
+    last = input("Please give me a last name: ")
+    if (last == 'q'):
+        break
+    
+    formatted_name = get_formatted_name(first, last)
+    print("\nNeatly formatted name: " + formatted_name + '.')
+```
+
+#### Unit Tests and Test Cases
+
+* The module `unittest` from the Python standard library provides tools for testing your code.
+* A unit test verifies that one specific aspect of a function's behavior is correct.
+* A test case is a collection of unit tests that together prove that a function behaves as it's supposed to, within the full range of situations you expect it to handle.
+
+#### A passing test
+
+test_name_function.py
+```python 
+import unittest
+from name_function import get_formatted_name
+
+class NamesTestCase(unittest.TestCase):
+    """Tests for name_function.py"""
+    
+    def test_first_last_name(self):
+        """Do names like 'Janis Joplin' work?"""
+        formatted_name = get_formatted_name('janis', 'joplin')
+        self.assertEqual(formatted_name, 'Janis Joplin')
+
+unittest.main()
+```
+
+Any method that starts with `test_` will be run automatically when we run `test_name_function.py`.
+
+#### A Failing test
+
+If we modify our name_function to:
+```python 
+def get_formatted_name(first, middle, last):
+    """Generate a neatly formatted full name."""
+    full_name = first + ' ' + middle + ' ' + last 
+    return full_name.title()
+```
+
+And run the test again, the test will fail.
+
+When a test fail, don't change the test. Instead, fix the code that caused the test to fail.
+
+The best option in here is to make the middle name optional:
+
+```python 
+def get_formatted_name(first, last, middle=''):
+    """Generate a neatly formatted full name."""
+    if middle:
+        full_name = first + ' ' + middle + ' ' + last 
+    else:
+        full_name = first + ' ' + last 
+    return full_name.title()
+```
+
+Write new tests for middle name:
+```python 
+import unittest
+from name_function import get_formatted_name
+
+class NamesTestCase(unittest.TestCase):
+    """Tests for name_function.py"""
+    
+    def test_first_last_name(self):
+        """Do names like 'Janis Joplin' work?"""
+        formatted_name = get_formatted_name('janis', 'joplin')
+        self.assertEqual(formatted_name, 'Janis Joplin')
+    
+    def test_first_last_middle_name(self):
+        formatted_name = get_formatted_name('wolfgang', 'mozart', 'amadeus')
+        self.assertEqual(formatted_name, 'Wolfgang Amadeus Mozart')
+
+unittest.main()
+```
+
+It's ok to have long method names in your `TestCase` classes. They need to be descriptive so you can make sense of the output when your tests fail.
+
+### Testing a class
+
+#### A variety of assert methods
+
+* `assertEqual(a, b)`: Verify that `a == b`
+* `assertNotEqual(a, b)`: Verify that `a != b`
+* `assertTrue(x)`: Verify that `x` is `True`
+* `assertFalse(x)`: Verify that `x` is `False`
+* `assertIn(item, list)`: Verify that `item` is in `list`
+* `assertNotIn(item, list)`: Verify that `item` is not in `list`
+
+#### A Class to test
+
+survey.py
+```python 
+class AnonymousSurvey():
+    """Collect anonymous answers to a survey question."""
+    
+    def __init__(self, question):
+        self.question = question
+        self.responses = []
+    
+    def show_question(self):
+        print(self.question)
+    
+    def store_response(self, new_response):
+        self.responses.append(new_response)
+    
+    def show_results(self):
+        print("Survey results:")
+        for response in self.responses:
+            print('- ' + response)
+```
+
+#### Testing the AnonymousSurvey Class
+
+test_survey.py
+```python 
+import unittest
+from survey import AnonymousSurvey
+
+class TestAnonymousSurvey(unittest.TestCase):
+    def test_store_single_response(self):
+        question = "What language did you first learn to speak?"
+        my_survey = AnonymousSurvey(question)
+        my_survey.store_response('English')
+        
+        self.assertIn('English', my_survey.responses)
+    
+    def test_store_three_responses(self):
+        question = "What language did you first learn to speak?"
+        my_survey = AnonymousSurvey(question)
+        responses = ['English', 'Spanish', 'Mandarin']
+        for response in responses:
+            my_survey.store_response(response)
+        
+        for response in responses:
+            self.assertIn(response, my_survey.responses)
+
+unittest.main()
+```
+
+#### The `setUp()` method
+
+The `unittest.TestCase` class has a `setUp()` method that allows you to create objects once and then use them in each of your test methods.
+
+Python runs the `setUp()` method before running each method starting with `test_`. Any objects created in the `setUp()` method are then available in each test method you write.
+
+test_survey.py
+```python 
+import unittest
+from survey import AnonymousSurvey
+
+class TestAnonymousSurvey(unittest.TestCase):
+    def setUp(self):
+        question = "What language did you first learn to speak?"
+        self.my_survey = AnonymousSurvey(question)
+        self.responses = ['English', 'Spanish', 'Mandarin']
+    
+    def test_store_single_response(self):
+        self.my_survey.store_response(self.responses[0])
+        self.assertIn(self.responses[0], self.my_survey.responses)
+    
+    def test_store_three_responses(self):
+        for response in self.responses:
+            self.my_survey.store_response(response)
+        
+        for response in self.responses:
+            self.assertIn(response, self.my_survey.responses)
+
+unittest.main()
+```
+
+* A passing test prints a dot.
+* A test that results in an error prints an `E`.
+* A test that results in a failed assertion prints and `F`.
